@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Blingpass::Application.load_tasks
+BlingPass::Application.load_tasks

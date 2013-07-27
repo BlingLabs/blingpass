@@ -1,7 +1,4 @@
 class DemoController < ApplicationController
-  
-	def index
-		render json: { success: true }
-	end
-
+    def home
+    end
 end
