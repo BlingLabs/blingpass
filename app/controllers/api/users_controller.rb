@@ -10,8 +10,8 @@ class Api::UsersController < ApplicationController
     u = User.new
     u.username = get_combined_username
     u.password = params[:user][:username]
-    u.holds = params[:user][:holds]
-    u.flights = params[:user][:flights]
+    u.holds = params[:user][:holds].map { |i| i.to_s.to_i }
+    u.flights = params[:user][:flights].map { |i| i.to_s.to_i }
 
     ret = u.save!
 
@@ -41,7 +41,7 @@ class Api::UsersController < ApplicationController
   end
 
   def authenticate(u, u_candidate)
-    ret = Verifier.verify(u, u_candidate[:holds], u_candidate[:flights])
+    ret = Verifier.verify(u, u_candidate[:holds].map { |i| i.to_s.to_i }, u_candidate[:flights].map { |i| i.to_s.to_i })
     u.save!
     ret
   end
