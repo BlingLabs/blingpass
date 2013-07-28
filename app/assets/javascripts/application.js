@@ -12,6 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.hotkeys
+//= require jquery.smooth-scroll
 //= require turbolinks
 //= require_tree .
+
+$(document).scroll(function(event) {
+  console.log(console.log(event));
+});
