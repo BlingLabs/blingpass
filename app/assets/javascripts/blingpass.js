@@ -92,15 +92,15 @@ $(function() {
 
       console.log(json);
       $.post($this.attr('action'), { "user": json }, function(response) {
-        if ($this.attr('id').indexOf('register') >= 0) {
-          console.log($this.children('.error'));
-          $this.children('.error').text(response.status.message).addClass('showing');
-        } else if ($this.attr('id').indexOf('login') >= 0) {
-          $this.children('.error').text(response.status.message).addClass('showing');
+        if (response.status.code >= 0) {
+          $this.children('.error').addClass('good').removeClass('bad');
+        } else {
+          $this.children('.error').addClass('bad').removeClass('good');
         }
+        $this.children('.error').text(response.status.message).addClass('showing');
 
         window.setTimeout(function() {
-          $this.children('.error').removeClass('showing');
+          $this.children('.error').removeClass('showing').removeClass('good').removeClass('bad');
         }, 1000);
       });
 

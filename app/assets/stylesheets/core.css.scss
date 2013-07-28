@@ -174,13 +174,30 @@ section.row {
     padding: 1rem;
     margin-top: 3.5rem;
     color: #FFFFFF;
-    background-color: #c0392b;
     max-height: 0;
 
     &.showing {
         opacity: 1;
         max-height: 3.5rem;
         margin-top: 6rem;
+    }
+
+    &.good {
+        background-color: #2ecc71;
+    }
+
+    &.bad {
+        background-color: #c0392b;
+    }
+}
+
+.about {
+    .details {
+        font-size: 1.4rem;
+    }
+
+    a {
+        color: #666;
     }
 }
 
