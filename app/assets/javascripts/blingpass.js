@@ -64,7 +64,6 @@ $(function() {
 
       if ($each.hasClass('blingpass-password')) {
         var $obj = passModels[$each.attr('id')];
-        var extension = {};
 
         json.flights = [0];
         $obj.downStamps.reduce(function(previous, current, index, array) {

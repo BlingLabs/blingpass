@@ -1,6 +1,6 @@
 <div class="container">
     <div class="content row">
-        <div class="col">
+        <div class="main col">
             <h1>
                 <span class="icon-stack">
                     <i class="icon-circle icon-stack-base"></i>
@@ -9,6 +9,9 @@
                 BlingPass
             </h1>
         </div>
+        <!--<div class="side col">-->
+
+        <!--</div>-->
     </div>
     <div class="content row">
         <div class="half col">
@@ -17,7 +20,7 @@
                 <form id="register-form" action="/api/users" method="post" class="blingpass-form">
                     <div class="error"></div>
                     <input placeholder="Username" name="username" type="text">
-                    <input placeholder="Password" name="password" type="text" class="blingpass-password">
+                    <input placeholder="Password" name="password" type="text" class="blingpass-password" autocomplete="off">
                     <button type="submit">Submit</button>
                 </form>
             </div>
@@ -29,7 +32,7 @@
                 <form id="login-form" action="/api/users/login" method="post" class="blingpass-form">
                     <div class="error"></div>
                     <input placeholder="Username" name="username" type="text">
-                    <input placeholder="Password" name="password" type="text" class="blingpass-password">
+                    <input placeholder="Password" name="password" type="text" class="blingpass-password" autocomplete="off">
                     <button type="submit">Submit</button>
                 </form>
             </div>
