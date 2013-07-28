@@ -48,3 +48,5 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'debugger', group: [:development, :test]
 
 gem 'awesome_print'
+
+gem 'rails_12factor'
