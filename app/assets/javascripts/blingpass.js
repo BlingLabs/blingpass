@@ -4,9 +4,14 @@ $(function() {
   var $forms = $('form.blingpass-form');
   var $passFields = $('form.blingpass-form input.blingpass-password');
   var passModels = {};
-  var lastKey = 0;
+  var keyMap = {};
   var lastHold = 0;
   var lastFlight = 0;
+
+  var validKeyCode = function(keyCode, shiftKey, ctrlKey, altKey, metaKey) {
+    var exclude = [91, 92, 93, 37, 38, 39, 40, 45, 46, 36, 35, 33, 34];
+    return !metaKey && !ctrlKey && keyCode >= 32 && keyCode <= 126 && exclude.indexOf(keyCode) < 0;
+  }
 
   $passFields.each(function() {
     var $this = $(this);
@@ -22,31 +27,42 @@ $(function() {
 
   $passFields.bind('keydown', function(event) {
     console.log(event.keyCode);
-    if (event.keyCode >= 33 && event.keyCode <= 126) {
+    if (validKeyCode(event.keyCode, event.shiftKey, event.ctrlKey, event.altKey, event.metaKey)) {
       var $this = $(this);
       var $obj = passModels[$this.attr('id')];
       lastHold = new Date();
-      lastKey = event.keyCode;
+      keyMap[event.keyCode] = keyMap[event.keyCode] + 1 || 1;
 
       if (lastFlight) {
         $obj.flights.push((new Date()) - lastFlight);
       }
 
       console.log('flights: ' + $obj.flights);
-      console.log('flights count: ' + $obj.flights.length);
+      console.log('count flight: ' + $obj.flights.length);
     }
   });
 
   $passFields.bind('keyup', function(event) {
-    console.log(event.keyCode);
-    if (event.keyCode >= 33 && event.keyCode <= 126) {
-      var $this = $(this);
+    var $this = $(this);
+    if (keyMap[event.keyCode] && keyMap[event.keyCode] > 0) {
+      keyMap[event.keyCode]--;
+
       var $obj = passModels[$this.attr('id')];
       $obj.holds.push((new Date()) - lastHold);
       lastFlight = new Date();
 
       console.log('holds: ' + $obj.holds);
       console.log('count holds: ' + $obj.holds.length);
+    }
+
+    if ($this.val().length === 0) {
+      keyMap = {};
+      lastHold = 0;
+      lastFlight = 0;
+      passModels[$this.attr('id')] = {
+        holds: [],
+        flights: [0]
+      }
     }
   });
 
