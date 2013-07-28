@@ -9,7 +9,7 @@ class Api::UsersController < ApplicationController
 
     u = User.new
     u.username = get_combined_username
-    u.password = params[:user][:username]
+    u.password = params[:user][:password]
     u.holds = to_int_array params[:user][:holds]
     u.flights = to_int_array params[:user][:flights]
 
@@ -25,6 +25,10 @@ class Api::UsersController < ApplicationController
     end
 
     u = all_users.first
+
+    if user_params[:password] and (u.password_digest.blank? || u.authenticate(user_params[:password]).blank?)
+      render json: { status: :failed_verification } and return
+    end
 
     if u.count < 5
       Verifier.update_average(u, to_int_array(user_params[:holds]), to_int_array(user_params[:flights]))

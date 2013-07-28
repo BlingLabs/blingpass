@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.text :flights
       t.integer :count
       t.decimal :threshold
+      t.string :password_digest
 
       t.timestamps
     end
