@@ -10,8 +10,8 @@ class Api::UsersController < ApplicationController
     u = User.new
     u.username = get_combined_username
     u.password = params[:user][:password]
-    u.holds = to_int_array params[:user][:holds]
-    u.flights = to_int_array params[:user][:flights]
+    u.holds = to_int_array params[:user][:holds] || []
+    u.flights = to_int_array params[:user][:flights] || []
 
     ret = u.save!
 
