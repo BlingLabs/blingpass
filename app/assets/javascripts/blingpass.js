@@ -79,7 +79,16 @@ $(function() {
     });
 
     console.log(json);
-    $.post($this.attr('action'), { "user": json });
+    $.post($this.attr('action'), { "user": json }, function(response) {
+      if ($this.attr('id').indexOf('register') >= 0) {
+        console.log($this.children('.error'));
+        $this.children('.error').text(response.status).addClass('showing');
+      } else if ($this.attr('id').indexOf('login') >= 0) {
+        $this.children('.error').text(response.status).addClass('showing');
+      }
+
+      console.log(response);
+    });
     return false;
   });
 });

@@ -64,6 +64,17 @@ body {
     @include sm { width: 100%; }
 }
 
+.error {
+    transition: all 0.5s;
+    //opacity: 0;
+    //max-height: 0;
+
+    //.showing {
+        opacity: 1;
+        max-height: 5rem;
+    //}
+}
+
 // Typography
 
 h1, h2, h3, h4, h5, h6 {
