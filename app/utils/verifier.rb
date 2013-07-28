@@ -10,11 +10,11 @@ class Verifier
   # Verify user's identity using percentage difference and absolute difference of hold/flight times
   def self.verify(user, new_holds, new_flights)
     pp "new flights " + new_flights.to_s
-    pp "avg new flight " + (new_flights.inject(:+)/(new_flights.length-1)).to_s
+    pp "avg new flight " + (new_flights.inject(:+)/(new_flights.length-1)).to_s unless new_flights.blank?
     pp "user flights " + user.flights.to_s
 
     pp "new holds " + new_holds.to_s
-    pp "avg new hold " + (new_holds.inject(:+)/(new_holds.length)).to_s
+    pp "avg new hold " + (new_holds.inject(:+)/(new_holds.length)).to_s unless new_holds.blank?
     pp "user holds " + user.holds.to_s
 
     pass = self.verify_percentage_difference(user, new_holds, new_flights) and self.verify_absolute_difference(user, new_holds, new_flights)
