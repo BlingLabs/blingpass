@@ -1,45 +1,77 @@
 <div class="container">
-    <div class="content row">
-        <div class="side col">
-            <h1>
+    <div class="row highlight navbar">
+        <div class="content">
+            <div class="side col">
+                <h1>
                 <span class="icon-stack">
                     <i class="icon-circle icon-stack-base"></i>
-                    <i class="icon-lock icon-light"></i>
+                    <i class="icon-lock icon-dark"></i>
                 </span>
-                BlingPass
-            </h1>
-        </div>
-        <div class="main col">
-            <ul class="horizontal">
-                <li>Demonstration</li>
-                <li>How It Works</li>
-                <li>About Us</li>
-            </ul>
+                    BlingPass
+                </h1>
+            </div>
+            <div class="main col navlinks">
+                <ul class="horizontal">
+                    <li><a href="#demo">How it works</a></li>
+                    <li><a href="#how-to-use-it">How to use it</a></li>
+                    <li><a href="#about">About Us</a></li>
+                </ul>
+            </div>
         </div>
     </div>
-    <div class="content row">
-        <div class="half col">
-            <div class="box">
-                <h2>Register</h2>
-                <form id="register-form" action="/api/users" method="post" class="blingpass-form">
-                    <div class="error"></div>
-                    <input placeholder="Username" name="username" type="text">
-                    <input placeholder="Password" name="password" type="text" class="blingpass-password" autocomplete="off">
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
-        </div>
 
-        <div class="half col">
+    <section id="demo" class="mini-content row">
+        <h1 class="center">How it works</h1>
+
+        <section data-num="1" class="full col">
             <div class="box">
-                <h2>Login</h2>
-                <form id="login-form" action="/api/users/login" method="post" class="blingpass-form">
-                    <div class="error"></div>
+                <h3>Register an account</h3>
+                <form id="register-form" action="/api/users" method="post" class="blingpass-form">
                     <input placeholder="Username" name="username" type="text">
                     <input placeholder="Password" name="password" type="text" class="blingpass-password" autocomplete="off">
                     <button type="submit">Submit</button>
+                    <div class="error">No errors.</div>
                 </form>
             </div>
+        </section>
+
+        <section data-num="2" class="full col">
+            <div class="box">
+                <h3>Log in with BlingPass authentication.</h3>
+                <form id="login-form" action="/api/users/login" method="post" class="blingpass-form">
+                    <input placeholder="Username" name="username" type="text">
+                    <input placeholder="Password" name="password" type="text" class="blingpass-password" autocomplete="off">
+                    <button type="submit">Submit</button>
+                    <div class="error">No errors.</div>
+                </form>
+            </div>
+        </section>
+    </section>
+
+    <section id="how-to-use-it" class="content row">
+        <h1 class="center">How to use it</h1>
+        <p>
+            Simple API. Just add the following lines to your front-end and server.
+        </p>
+        <div class="half col">
+            <h2>Client</h2>
+            <div class="code" data-type="javascript">
+                hello world
+            </div>
         </div>
+        <div class="half col">
+            <h2>Server</h2>
+            <div class="code" data-type="rails">
+                hello world
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="mini-content row">
+        <h1 class="center">About</h1>
+        <p>Blah blah blah we're cool.</p>
+    </section>
+
+    <div class="footer">
     </div>
 </div>

@@ -101,7 +101,7 @@ $(function() {
 
         window.setTimeout(function() {
           $this.children('.error').removeClass('showing');
-        }, 500);
+        }, 1000);
       });
 
     }, 100);

@@ -34,7 +34,7 @@
 
 body {
     margin: 0;
-    background-color: #FDFDFD;
+    background-color: #ecf0f1;
     font: {
         family: 'Open Sans', 'Helvetica-Neue', 'Helvetica', sans-serif;
         weight: 300;
@@ -43,9 +43,7 @@ body {
 }
 
 .container {
-    margin: 2rem auto;
-    max-width: 68rem;
-    width: 100%;
+    margin: 0 auto;
 
     @include lg {
         font-size: 1.8rem;
@@ -56,6 +54,70 @@ body {
     @include sm {
         font-size: 1.4rem;
     }
+}
+
+.content {
+    max-width: 60rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.code {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #666;
+    border-radius: 0.25rem;
+    background-color: darken(#ecf0f1, 10%);
+    padding: 1rem;
+    font-family: monospace;
+    font-size: 1.1rem;
+    position: relative;
+
+    &[data-type] {
+        margin-top: 2rem;
+
+        &:before {
+            display: block;
+            content: attr(data-type);
+            position: absolute;
+            top: -1.5rem;
+        }
+    }
+}
+
+section {
+    margin-top: 2.5rem;
+    left: 4.5rem;
+    &[data-num] {
+        position: relative;
+
+        &:before {
+            display: block;
+            font-size: 3rem;
+            color: #FFFFFF;
+            width: 8rem;
+            height: 8rem;
+            line-height: 8rem;
+            text-align: center;
+            background-color: #c0392b;
+            content: attr(data-num);
+            position: absolute;
+            border-radius: 50%;
+            left: -8rem;
+            top: 2rem;
+        }
+    }
+}
+
+section.row {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.mini-content {
+    max-width: 42rem;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .half {
@@ -76,18 +138,56 @@ body {
     @include sm { width: 100%; }
 }
 
+.highlight {
+    color: #ffffff;
+    background-color: #c0392b;
+}
+
+.alt {
+    background-color: #ffffff;
+}
+
+.navbar {
+    margin: { top: 0; bottom: 3rem }
+    padding: { top: 2rem; bottom: 2rem; }
+}
+
+.navlinks {
+    text-align: right;
+    font-size: 1.4rem;
+    margin: { top: 1rem; bottom: 1rem; };
+}
+
+.footer {
+    margin-top: 15rem;
+    margin-bottom: 15rem;
+}
+
 .error {
-    transition: all 0.5s;
+    transition: all 0.5s, opacity 0.5s ease-in;
+    clear: both;
+    text-align: center;
     opacity: 0;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-top: 3.5rem;
+    color: #FFFFFF;
+    background-color: #c0392b;
     max-height: 0;
 
     &.showing {
         opacity: 1;
         max-height: 3.5rem;
+        margin-top: 6rem;
     }
 }
 
 // Typography
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: 300;
@@ -105,6 +205,10 @@ h1 {
     }
     @include sm {
         font-size: 1.8rem;
+        text-align: center;
+    }
+
+    &.center {
         text-align: center;
     }
 }
@@ -161,7 +265,7 @@ button[type=submit] {
     outline: none;
     float: right;
     border-radius: 0.5rem;
-    background-color: #666666;
+    background-color: #c0392b;
     color: #FFFFFF;
     border: 0;
     margin: { top: 0.5rem; left: 0; bottom: 0.5rem; right: 0; };
