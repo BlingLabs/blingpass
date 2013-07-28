@@ -72,9 +72,11 @@ body {
     font-family: monospace;
     font-size: 1.1rem;
     position: relative;
+    margin-bottom: 2rem;
 
     &[data-type] {
         margin-top: 2rem;
+        margin-bottom: 4rem;
 
         &:before {
             display: block;

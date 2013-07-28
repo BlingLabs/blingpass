@@ -94,9 +94,9 @@ $(function() {
       $.post($this.attr('action'), { "user": json }, function(response) {
         if ($this.attr('id').indexOf('register') >= 0) {
           console.log($this.children('.error'));
-          $this.children('.error').text(response.status).addClass('showing');
+          $this.children('.error').text(response.status.message).addClass('showing');
         } else if ($this.attr('id').indexOf('login') >= 0) {
-          $this.children('.error').text(response.status).addClass('showing');
+          $this.children('.error').text(response.status.message).addClass('showing');
         }
 
         window.setTimeout(function() {
