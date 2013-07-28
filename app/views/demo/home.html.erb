@@ -62,7 +62,29 @@
         <div class="half col">
             <h2>Server</h2>
             <div class="code" data-type="rails">
-                hello world
+                require 'blingpass'
+
+                def create
+                    BlingPass.api_key = ENV['BLINGPASS_APIKEY']
+                    BlingPass.create_user({
+                        username: params[:username],
+                        signature: {
+                            params[:holds]
+                            params[:flights]
+                        }
+                    })
+                end
+
+                def login
+                    BlingPass.api_key = ENV['BLINGPASS_APIKEY']
+                    BlingPass.verify_user({
+                        username: params[:username],
+                        signature: {
+                            params[:holds]
+                            params[:flights]
+                        }
+                    })
+                end
             </div>
         </div>
     </section>
