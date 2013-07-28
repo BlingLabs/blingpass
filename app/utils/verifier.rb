@@ -1,12 +1,15 @@
 class Verifier
-  MAX_THRESHOLD = 0.5
-  MIN_THRESHOLD = 0.3
+  MAX_THRESHOLD = 200
+  MIN_THRESHOLD = 50
 
   def self.verify(user, new_holds, new_flights)
     accuracy_count = 0
     for i in 0..(new_holds.length - 1)
       # Calculate deviation between new hold/flight time with avg hold/flight time
       deviation = Math::sqrt((new_holds[i].to_i - user.holds[i].to_i)**2 + (new_flights[i].to_i - user.flights[i].to_i)**2)
+      
+      pp "deviation is " + deviation.to_s
+      ap user
 
       if deviation > user.threshold
         # If the deviation is too high just bail out right away
@@ -22,9 +25,9 @@ class Verifier
 
     # Decrease threshold if the user is really accurate
     if accuracy_count == new_holds.length
-      user.threshold -= 0.01 if user.threshold > MIN_THRESHOLD
+      user.threshold -= 10 if user.threshold > MIN_THRESHOLD
     else
-      user.threshold += 0.01 if user.threshold < MAX_THRESHOLD
+      user.threshold += 10 if user.threshold < MAX_THRESHOLD
     end
 
     return true
