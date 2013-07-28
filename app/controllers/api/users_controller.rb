@@ -3,9 +3,7 @@ require 'pp'
 class Api::UsersController < ApplicationController
 
   def create
-    u = User.new user_params
-    u.count = 0
-    u.save!
+    u = User.create user_params
 
     render json: { user: u }
   end
