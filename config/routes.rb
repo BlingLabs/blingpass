@@ -57,6 +57,7 @@ BlingPass::Application.routes.draw do
   root to: 'demo#home'
 
   namespace :api do
-    resources :users 
+    resources :users
+    post 'users/login' => 'users#login'
   end
 end

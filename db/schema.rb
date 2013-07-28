@@ -18,8 +18,10 @@ ActiveRecord::Schema.define(version: 20130728000159) do
 
   create_table "users", force: true do |t|
     t.string   "username"
+    t.string   "password"
     t.text     "holds"
     t.text     "flights"
+    t.integer  "count"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
