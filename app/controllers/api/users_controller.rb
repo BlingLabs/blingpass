@@ -30,7 +30,7 @@ class Api::UsersController < ApplicationController
       render json: { status: :failed_verification } and return
     end
 
-    if u.count < 5
+    if u.count < 10
       Verifier.update_average(u, to_int_array(user_params[:holds]), to_int_array(user_params[:flights]))
       u.count = u.count + 1
       u.save!
