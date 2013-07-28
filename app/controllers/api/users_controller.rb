@@ -4,6 +4,7 @@ class Api::UsersController < ApplicationController
 
   def create
     u = User.new user_params
+    u.count = 0
     u.save!
 
     render json: { user: u }
@@ -11,7 +12,7 @@ class Api::UsersController < ApplicationController
 
   def login
     u = User.where(params[:user].slice :username).first
-    render json: { success: authenticate(u, User.new(user_params)) }
+    render json: { success: authenticate(u, user_params) }
   end
 
   private
@@ -21,7 +22,9 @@ class Api::UsersController < ApplicationController
   end
 
   def authenticate(u, u_candidate)
-    return rand < 0.5
+    ret = Verifier.verify(u, u_candidate[:holds], u_candidate[:flights])
+    u.save!
+    ret
   end
 
 end
