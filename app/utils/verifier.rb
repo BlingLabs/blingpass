@@ -1,8 +1,10 @@
 class Verifier
-  MAX_FLIGHT_PERCENTAGE_DIFFERENCE_THRESHOLD = 0.75
-  MAX_HOLD_PERCENTAGE_DIFFERENCE_THRESHOLD = 0.45
+  MAX_FLIGHT_PERCENTAGE_DIFFERENCE_THRESHOLD = 1.20
+  MAX_HOLD_PERCENTAGE_DIFFERENCE_THRESHOLD = 0.65
+  #MAX_FLIGHT_PERCENTAGE_DIFFERENCE_THRESHOLD = 1.40
+  #MAX_HOLD_PERCENTAGE_DIFFERENCE_THRESHOLD = 0.80
   MAX_THRESHOLD_MS = 160
-  MIN_THRESHOLD_MS = 100
+  MIN_THRESHOLD_MS = 90
   THRESHOLD_INCREMENT_MS = 10
 
   # Verify user's identity using percentage difference and absolute difference of hold/flight times
@@ -46,7 +48,7 @@ class Verifier
   # Calculate the absolute difference between new hold/flight times and the user's avg hold/flight times.
   def self.verify_absolute_difference(user, new_holds, new_flights)
     pp "absolute difference"
-    
+
     accuracy_count = 0
     pp "threshold " + user.threshold.to_s
     for i in 0..(new_holds.length - 1)

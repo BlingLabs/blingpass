@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   before_create do
     self.count = 0
-    self.threshold = Verifier::MAX_THRESHOLD  
+    self.threshold = Verifier::MAX_THRESHOLD_MS
   end
 
 end
