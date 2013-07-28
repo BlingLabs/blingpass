@@ -6,7 +6,7 @@ class Api::UsersController < ApplicationController
 
   def create
     unless User.where(username: get_combined_username).blank?
-      render json: { status: "User already exists" } and return
+      render json: { status: { code: -1, message: "User already exists" } } and return
     end
 
     u = User.new
@@ -17,31 +17,31 @@ class Api::UsersController < ApplicationController
 
     ret = u.save!
 
-    render json: { status: (ret ? "Successfully created user" : "Failed to create user") }
+    render json: { status: (ret ? { code: 0, message: "Successfully created user" } : { code: -1, message: "Failed to create user" }) }
   end
 
   def login
     all_users = User.where(username: get_combined_username)
     if all_users.blank?
-      render json: { status: "User does not exist" } and return
+      render json: { status: { code: -1, message: "User does not exist" } } and return
     end
 
     u = all_users.first
 
     if !u.password_digest.blank? and u.authenticate(user_params[:password]).blank?
-      render json: { status: "Failed to verify user" } and return
+      render json: { status: { code: -1, message: "Failed to verify user" } } and return
     end
 
     if u.count < TRAINING_PERIOD
       Verifier.update_average(u, to_int_array(user_params[:holds]), to_int_array(user_params[:flights]))
       u.count = u.count + 1
       u.save!
-      render json: { status: "Need more logins" } and return
+      render json: { status: { code: 0, message: "Need more logins" } } and return
     end
 
     ret = authenticate u, user_params
 
-    render json: { status: (ret ? "Successfully verified user" : "Failed to verify user") }
+    render json: { status: (ret ? { code: 0, message: "Successfully verified user" } : { code: -1, message: "Failed to verify user" }) }
   end
 
   private
