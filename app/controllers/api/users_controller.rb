@@ -1,5 +1,7 @@
 require 'pp'
 
+TRAINING_PERIOD = 10
+
 class Api::UsersController < ApplicationController
 
   def create
@@ -9,9 +11,9 @@ class Api::UsersController < ApplicationController
 
     u = User.new
     u.username = get_combined_username
-    u.password = params[:user][:password]
-    u.holds = to_int_array params[:user][:holds] || []
-    u.flights = to_int_array params[:user][:flights] || []
+    u.password = user_params[:password]
+    u.holds = to_int_array user_params[:holds]
+    u.flights = to_int_array user_params[:flights]
 
     ret = u.save!
 
@@ -26,11 +28,11 @@ class Api::UsersController < ApplicationController
 
     u = all_users.first
 
-    if user_params[:password] and (u.password_digest.blank? || u.authenticate(user_params[:password]).blank?)
+    if !u.password_digest.blank? and u.authenticate(user_params[:password]).blank?
       render json: { status: :failed_verification } and return
     end
 
-    if u.count < 10
+    if u.count < TRAINING_PERIOD
       Verifier.update_average(u, to_int_array(user_params[:holds]), to_int_array(user_params[:flights]))
       u.count = u.count + 1
       u.save!
@@ -55,10 +57,11 @@ class Api::UsersController < ApplicationController
   end
 
   def get_combined_username
-    (params[:service] ? params[:service] : 'none') + ':' + params[:user][:username]
+    (params[:service] || 'none') + ':' + user_params[:username]
   end
 
   def to_int_array(arr)
+    return [] if arr.blank?
     arr.map { |i| i.to_s.to_i }
   end
 
