@@ -18,7 +18,7 @@ $(function() {
 
     passModels[$this.attr('id')] = {
       downStamps: [],
-      upStamps: [],
+      upStamps: []
     }
   });
 
@@ -32,6 +32,8 @@ $(function() {
         keyCode: keyCode,
         amount: new Date().getTime()
       });
+    } else if (keyCode === 8) {
+      $this.val('');
     }
   });
 
@@ -64,6 +66,7 @@ $(function() {
         json[$each.attr('name')] = $each.val();
 
         if ($each.hasClass('blingpass-password')) {
+          $each.val('');
           var $obj = passModels[$each.attr('id')];
 
           json.flights = [];
@@ -87,6 +90,9 @@ $(function() {
               }
             }
           });
+
+          $obj.downStamps = [];
+          $obj.upStamps = [];
         }
       });
 

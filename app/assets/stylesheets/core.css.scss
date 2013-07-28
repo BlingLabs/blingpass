@@ -201,6 +201,14 @@ section.row {
     }
 }
 
+.oneliner {
+    font-size: 2.0em;
+}
+
+.center {
+    text-align: center;
+}
+
 // Typography
 
 a {
@@ -224,10 +232,6 @@ h1 {
     }
     @include sm {
         font-size: 1.8rem;
-        text-align: center;
-    }
-
-    &.center {
         text-align: center;
     }
 }
