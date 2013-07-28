@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="content row">
+        <div class="col">
+            <h1>
+                <span class="icon-stack">
+                    <i class="icon-circle icon-stack-base"></i>
+                    <i class="icon-lock icon-light"></i>
+                </span>
+                BlingPass
+            </h1>
+        </div>
+    </div>
+    <div class="content row">
+        <div class="half col">
+            <div class="box">
+                <h2>Register</h2>
+                <form action="/api/users" method="post" class="blingpass-form">
+                    <input placeholder="Username" name="username" type="text">
+                    <input placeholder="Password" name="password" type="password" class="blingpass-password">
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="half col">
+            <div class="box">
+                <h2>Login</h2>
+                <form action="/api/users/login" method="post" class="blingpass-form">
+                    <input placeholder="Username" name="username" type="text">
+                    <input placeholder="Password" name="password" type="password" class="blingpass-password">
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

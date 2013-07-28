@@ -1,0 +1,141 @@
+// Grid
+
+.col {
+    box-sizing: border-box;
+    float: left;
+    padding: 0 1.5rem;
+    width: 100%;
+}
+
+.row {
+    margin: { top: 1rem; bottom: 1rem; }
+
+    .row {
+        margin: 0 -1.5rem;
+    }
+
+    &:before, &:after {
+        content: '';
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+// Mixins
+
+@mixin sm { @media #{'only screen and (max-width: 38rem)'} { @content; } }
+@mixin md { @media #{'only screen and (max-width: 54rem)'} { @content; } }
+@mixin lg { @media #{'only screen'} { @content; } }
+
+// Core
+
+body {
+    margin: 0;
+    background-color: #FDFDFD;
+    font: {
+        family: 'Open Sans', 'Helvetica-Neue', 'Helvetica', sans-serif;
+        weight: 300;
+        size: 62.5%;
+    }
+}
+
+.container {
+    margin: 2rem auto;
+    max-width: 68rem;
+    width: 100%;
+
+    @include lg {
+        font-size: 1.8rem;
+    }
+    @include md {
+        font-size: 1.4rem;
+    }
+    @include sm {
+        font-size: 1.4rem;
+    }
+}
+
+.half {
+    @include lg { width: 50%; }
+    @include md { width: 50%; }
+    @include sm { width: 100%; }
+}
+
+// Typography
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+    margin: 0;
+}
+
+h1 {
+    @include lg {
+        font-size: 3.2rem;
+        text-align: left;
+    }
+    @include md {
+        font-size: 2.4rem;
+        text-align: left;
+    }
+    @include sm {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+}
+
+h2 {
+    @include lg { font-size: 2.6rem; }
+    @include md { font-size: 2.2rem; }
+    @include sm { font-size: 1.6rem; }
+}
+
+// Components
+input, ::-webkit-input-placeholder {
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.25rem;
+    margin: { top: 0.25em; bottom: 0.25em; };
+    font: {
+        family: 'Open Sans', 'Helvetica-Neue', 'Helvetica', sans-serif;
+        weight: 300;
+    };
+
+    @include lg {
+        font-size: 1.8rem;
+        height: 2.8rem;
+        line-height: 1.8rem;
+    }
+    @include md {
+        font-size: 1.8rem;
+        height: 2.5rem;
+        line-height: 1.8rem;
+    }
+    @include sm {
+        font-size: 1.4rem;
+        height: 2.5rem;
+        line-height: 1.4rem;
+    }
+}
+
+button[type=submit] {
+    outline: none;
+    float: right;
+    border-radius: 0.5rem;
+    background-color: #666666;
+    color: #FFFFFF;
+    border: 0;
+    margin: { top: 0.5rem; left: 0; bottom: 0.5rem; right: 0; };
+    padding: { top: 0.5rem; left: 1rem; bottom: 0.5rem; right: 1rem; };
+    font: {
+        family: 'Open Sans', 'Helvetica-Neue', 'Helvetica', sans-serif;
+        weight: 300;
+    };
+
+    @include lg { font-size: 1.8rem; }
+    @include md { font-size: 1.4rem; }
+    @include sm { font-size: 1.4rem; }
+}
