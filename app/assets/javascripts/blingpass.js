@@ -21,27 +21,33 @@ $(function() {
   });
 
   $passFields.bind('keydown', function(event) {
-    var $this = $(this);
-    var $obj = passModels[$this.attr('id')];
-    lastHold = new Date();
-    lastKey = event.keyCode;
+    console.log(event.keyCode);
+    if (event.keyCode >= 33 && event.keyCode <= 126) {
+      var $this = $(this);
+      var $obj = passModels[$this.attr('id')];
+      lastHold = new Date();
+      lastKey = event.keyCode;
 
-    if (lastFlight) {
-      $obj.flights.push((new Date()) - lastFlight);
+      if (lastFlight) {
+        $obj.flights.push((new Date()) - lastFlight);
+      }
+
+      console.log('flights: ' + $obj.flights);
+      console.log('flights count: ' + $obj.flights.length);
     }
-
-    console.log('flights: ' + $obj.flights);
-    console.log('flights count: ' + $obj.flights.length);
   });
 
   $passFields.bind('keyup', function(event) {
-    var $this = $(this);
-    var $obj = passModels[$this.attr('id')];
-    $obj.holds.push((new Date()) - lastHold);
-    lastFlight = new Date();
+    console.log(event.keyCode);
+    if (event.keyCode >= 33 && event.keyCode <= 126) {
+      var $this = $(this);
+      var $obj = passModels[$this.attr('id')];
+      $obj.holds.push((new Date()) - lastHold);
+      lastFlight = new Date();
 
-    console.log('holds: ' + $obj.holds);
-    console.log('count holds: ' + $obj.holds.length);
+      console.log('holds: ' + $obj.holds);
+      console.log('count holds: ' + $obj.holds.length);
+    }
   });
 
   $forms.submit(function() {
@@ -49,7 +55,7 @@ $(function() {
     var json = {};
     $this.children('input').each(function() {
       $each = $(this);
-      json[$each.attr('name')] = $each.text();
+      json[$each.attr('name')] = $each.val();
 
       if ($each.hasClass('blingpass-password')) {
         $.extend(json, passModels[$each.attr('id')]);
@@ -57,6 +63,7 @@ $(function() {
     });
 
     console.log(json);
+    $.post($this.attr('action'), { "user": json });
     return false;
   });
 });
