@@ -76,15 +76,15 @@
                 <br>
                 def create<br>
                 &nbsp;&nbsp;BlingPass.api_key = ENV['BLINGPASS_APIKEY']<br>
-                &nbsp;&nbsp;BlingPass.create_user blingpass_signature<br>
+                &nbsp;&nbsp;BlingPass.create_user blingpass_data<br>
                 end<br>
                 <br>
                 def login<br>
                 &nbsp;&nbsp;BlingPass.api_key = ENV['BLINGPASS_APIKEY']<br>
-                &nbsp;&nbsp;BlingPass.verify_user blingpass_signature<br>
+                &nbsp;&nbsp;BlingPass.verify_user blingpass_data<br>
                 end<br>
                 <br>
-                def blingpass_signature<br>
+                def blingpass_data<br>
                 &nbsp;&nbsp;{<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;username: params[:username],<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;signature: {<br>
