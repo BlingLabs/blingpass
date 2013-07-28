@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.text :holds
       t.text :flights
       t.integer :count
+      t.decimal :threshold
 
       t.timestamps
     end
