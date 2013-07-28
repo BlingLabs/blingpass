@@ -65,11 +65,14 @@ $(function() {
       if ($each.hasClass('blingpass-password')) {
         var $obj = passModels[$each.attr('id')];
 
-        json.flights = [0];
-        $obj.downStamps.reduce(function(previous, current, index, array) {
-          json.flights.push(current.amount - previous.amount);
-          return current;
-        });
+        json.flights = [];
+        if ($obj.downStamps.length > 0) {
+          json.flights.push(0);
+          $obj.downStamps.reduce(function(previous, current, index, array) {
+            json.flights.push(current.amount - previous.amount);
+            return current;
+          });
+        }
 
         json.holds = [];
         $obj.downStamps.forEach(function(val) {
