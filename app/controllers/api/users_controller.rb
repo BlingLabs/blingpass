@@ -35,7 +35,7 @@ class Api::UsersController < ApplicationController
 
     ret = authenticate u, user_params
 
-    render json: { status: (ret ? :sucessful_verification : :failed_verification) }
+    render json: { status: (ret ? :successful_verification : :failed_verification) }
   end
 
   private
