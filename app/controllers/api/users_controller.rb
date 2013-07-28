@@ -28,7 +28,7 @@ class Api::UsersController < ApplicationController
     ret = authenticate u, user_params
 
     if u.count < 5
-      render json: { status: :need_more_logins } and return
+      render json: { status: :need_more_logins.to_s + u.count.to_s } and return
     end
 
     render json: { status: (ret ? :sucessful_verification : :failed_verification) }
