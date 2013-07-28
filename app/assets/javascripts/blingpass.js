@@ -68,7 +68,7 @@ $(function() {
 
         json.flights = [0];
         $obj.downStamps.reduce(function(previous, current, index, array) {
-          extension.flights.push(current.amount - previous.amount);
+          json.flights.push(current.amount - previous.amount);
           return current;
         });
 
@@ -76,7 +76,7 @@ $(function() {
         $obj.downStamps.forEach(function(val) {
           for (var i = 0; i < $obj.upStamps.length; i++) {
             if (val.keyCode === $obj.upStamps[i].keyCode) {
-              extension.holds.push($obj.upStamps[i].amount - val.amount);
+              json.holds.push($obj.upStamps[i].amount - val.amount);
               $obj.upStamps.splice(i, 1);
               break;
             }
