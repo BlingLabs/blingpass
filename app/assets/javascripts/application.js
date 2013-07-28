@@ -17,5 +17,4 @@
 //= require_tree .
 
 $(document).scroll(function(event) {
-  console.log(console.log(event));
 });

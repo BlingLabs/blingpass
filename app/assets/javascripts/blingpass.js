@@ -75,11 +75,13 @@ $(function() {
         }
 
         json.holds = [];
+        var upStamps = $.extend(true, {}, { array: $obj.upStamps });
+        upStamps = upStamps.array;
         $obj.downStamps.forEach(function(val) {
-          for (var i = 0; i < $obj.upStamps.length; i++) {
-            if (val.keyCode === $obj.upStamps[i].keyCode) {
-              json.holds.push($obj.upStamps[i].amount - val.amount);
-              $obj.upStamps.splice(i, 1);
+          for (var i = 0; i < upStamps.length; i++) {
+            if (val.keyCode === upStamps[i].keyCode) {
+              json.holds.push(upStamps[i].amount - val.amount);
+              upStamps.splice(i, 1);
               break;
             }
           }
