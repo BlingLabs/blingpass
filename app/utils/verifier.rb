@@ -18,7 +18,6 @@ class Verifier
     pp "user holds " + user.holds.to_s
 
     pass = self.verify_percentage_difference(user, new_holds, new_flights) and self.verify_absolute_difference(user, new_holds, new_flights)
-    user.count += 1
     return pass
   end
 
@@ -41,6 +40,7 @@ class Verifier
     end
 
     self.update_average(user, new_holds, new_flights)
+    user.count += 1
 
     return true
   end
@@ -66,6 +66,7 @@ class Verifier
     end
 
     self.update_average(user, new_holds, new_flights)
+    user.count += 1
 
     # Decrease threshold if the user is really accurate
     if accuracy_count == new_holds.length
